@@ -1,0 +1,1214 @@
+/* ============================================================
+   VK MONT — Premium CSS
+   Aesthetic: Industrial Luxury / Refined Minimal
+   ============================================================ */
+
+/* --- Google Fonts import --- */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* ============================================================
+   1. CSS VARIJABLE & RESET
+   ============================================================ */
+:root {
+    --red:          #E8251A;
+    --red-dark:     #C01E14;
+    --red-glow:     rgba(232, 37, 26, 0.18);
+    --red-subtle:   rgba(232, 37, 26, 0.08);
+
+    --black:        #0A0A0A;
+    --black-soft:   #111111;
+    --charcoal:     #1C1C1C;
+    --iron:         #2A2A2A;
+
+    --white:        #FFFFFF;
+    --off-white:    #F7F6F4;
+    --warm-grey:    #EBEBEB;
+    --muted:        #888888;
+    --text-body:    #333333;
+
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+
+    --nav-h:        72px;
+    --radius-sm:    10px;
+    --radius-md:    20px;
+    --radius-lg:    32px;
+    --radius-pill:  999px;
+
+    --shadow-card:  0 8px 40px rgba(0,0,0,0.06);
+    --shadow-lift:  0 24px 64px rgba(0,0,0,0.10);
+    --shadow-red:   0 8px 32px rgba(232, 37, 26, 0.28);
+
+    --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--text-body);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   2. UTILITY
+   ============================================================ */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* ============================================================
+   3. NAVIGACIJA
+   ============================================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-h);
+    z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* JS može dodati .scrolled klasu */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+}
+
+/* Na startu navbar je providno (hero je ispod) */
+.navbar:not(.scrolled) {
+    background: transparent;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+/* LOGO */
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.navbar.scrolled .logo {
+    color: var(--black);
+}
+
+.logo span {
+    color: var(--red);
+}
+
+/* NAVIGACIONI LINKOVI */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 0;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.85);
+    padding: 8px 20px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-menu a {
+    color: var(--text-body);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--red);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s var(--ease-out);
+}
+
+.nav-menu a:hover {
+    color: var(--white);
+}
+
+.navbar.scrolled .nav-menu a:hover {
+    color: var(--red);
+}
+
+.nav-menu a:hover::after {
+    transform: scaleX(1);
+}
+
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1100;
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.35s var(--ease-out);
+    transform-origin: center;
+}
+
+.navbar.scrolled .bar {
+    background: var(--black);
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+    transform: scaleX(0);
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   4. HERO SEKCIJA
+   ============================================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('slike/hero2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax efekat */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        160deg,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.50) 50%,
+        rgba(10, 10, 10, 0.80) 100%
+    );
+    z-index: 1;
+}
+
+/* Dekorativni akcenat — crvena linija u uglu */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 45%;
+    background: linear-gradient(to bottom, var(--red), transparent);
+    z-index: 3;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    width: 100%;
+    padding: 0 48px;
+    padding-top: var(--nav-h);
+}
+
+.hero-content {
+    max-width: 780px;
+}
+
+/* Overline label */
+.hero-content::before {
+    content: 'Profesionalna izrada i ugradnja';
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-out) 0.2s forwards;
+}
+
+.hero-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.6s forwards;
+}
+
+.hero-content .btn-primary {
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.8s forwards;
+}
+
+/* Scroll indikator */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+    z-index: 3;
+    animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+    0%   { opacity: 0; transform: translateX(-50%) scaleY(0); transform-origin: top; }
+    50%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(-50%) scaleY(1); transform-origin: top; }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   5. DUGMAD
+   ============================================================ */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    box-shadow: var(--shadow-red);
+    transition: background 0.3s ease, transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+    white-space: nowrap;
+    -webkit-appearance: none;
+}
+
+.btn-primary:hover {
+    background: var(--red-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(232, 37, 26, 0.38);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* ============================================================
+   6. BADGE
+   ============================================================ */
+.badge {
+    display: inline-block;
+    background: var(--red-subtle);
+    color: var(--red);
+    padding: 6px 18px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(232, 37, 26, 0.15);
+}
+
+/* ============================================================
+   7. O NAMA SEKCIJA
+   ============================================================ */
+.about-section {
+    padding: 140px 0 120px;
+    background: var(--off-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorativna pozadina — suptilni grid */
+.about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* Dekorativni broj u pozadini */
+.about-section::after {
+    content: 'ALU';
+    position: absolute;
+    right: -20px;
+    top: 60px;
+    font-family: var(--font-display);
+    font-size: clamp(120px, 20vw, 220px);
+    font-weight: 800;
+    color: rgba(0,0,0,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -4px;
+}
+
+.about-intro {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.main-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    color: var(--black);
+    margin: 20px 0 24px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.sub-text {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+.sub-text strong {
+    color: var(--text-body);
+    font-weight: 600;
+}
+
+/* --- KARTICE --- */
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 1;
+}
+
+.premium-card {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.5s var(--ease-spring), box-shadow 0.5s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* Broj kartice u uglu */
+.premium-card::before {
+    content: attr(data-index);
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.premium-card:nth-child(1)::before { content: '01'; }
+.premium-card:nth-child(2)::before { content: '02'; }
+.premium-card:nth-child(3)::before { content: '03'; }
+
+.card-img-box {
+    position: relative;
+    height: 320px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--warm-grey);
+}
+
+.card-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s var(--ease-out);
+    will-change: transform;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.10) 40%,
+        transparent 100%
+    );
+    transition: opacity 0.4s ease;
+}
+
+.card-info {
+    padding: 18px 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.color-preview {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.c-antracit { background: #3B4148; }
+.c-belo     { background: #F9F9F9; border: 2px solid #E0E0E0; }
+.c-crno     { background: #111111; }
+
+/* --- HOVER ANIMACIJE --- */
+.premium-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: var(--shadow-lift), 0 0 0 1px rgba(232, 37, 26, 0.08);
+}
+
+.premium-card:hover img {
+    transform: scale(1.08);
+}
+
+.premium-card:hover .card-info h3 {
+    color: var(--red);
+}
+
+.premium-card:hover .color-preview {
+    transform: scale(1.2);
+}
+
+/* --- DIVIDER SA TAČKAMA --- */
+.more-divider {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Horizontalna linija pre tačaka */
+.more-divider::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--warm-grey));
+    margin-bottom: 4px;
+}
+
+.dots-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 1.8s infinite ease-in-out;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.25s; }
+.dot:nth-child(3) { animation-delay: 0.5s; }
+
+.more-divider p {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1);   opacity: 0.25; }
+    50%       { transform: scale(1.6); opacity: 1; }
+}
+
+/* ============================================================
+   8. KONTAKT SEKCIJA
+   ============================================================ */
+.contact-section {
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorativni krug u pozadini */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--red-subtle) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 120px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- INFO STRANA --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-info h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1.0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin: 20px 0 16px;
+}
+
+.contact-info h2 span {
+    color: var(--red);
+    position: relative;
+}
+
+/* Podvlaka ispod "kontaktu" */
+.contact-info h2 span::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--red);
+    border-radius: 2px;
+    opacity: 0.3;
+}
+
+.contact-info > p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 48px;
+    font-weight: 300;
+}
+
+/* Info stavke */
+.info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: var(--off-white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--warm-grey);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-spring);
+}
+
+.info-item:hover {
+    border-color: rgba(232, 37, 26, 0.2);
+    box-shadow: 0 8px 24px rgba(232, 37, 26, 0.06);
+    transform: translateX(6px);
+}
+
+.icon-box {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    background: var(--white);
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--warm-grey);
+}
+
+.info-text span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 3px;
+}
+
+.info-text p {
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+/* --- FORMA --- */
+.contact-form-container {
+    background: var(--off-white);
+    padding: 52px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--warm-grey);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorativni akcenat na formi */
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--red), transparent);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 9px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-body);
+    letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 18px;
+    border: 1.5px solid var(--warm-grey);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--black);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #BBBBBB;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 4px var(--red-glow);
+    background: var(--white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+.contact-form .btn-primary {
+    width: 100%;
+    padding: 17px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   9. MOBILNI — RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding: 100px 0;
+    }
+
+    .contact-info > p {
+        max-width: 100%;
+    }
+
+    .cards-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar */
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background: var(--black);
+        transform: translateX(-100%);
+        transition: transform 0.4s var(--ease-out);
+        z-index: 1050;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .nav-menu a {
+        font-size: 1.4rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.7);
+        padding: 14px 32px;
+    }
+
+    .nav-menu a:hover {
+        color: var(--white);
+    }
+
+    .nav-menu a::after {
+        display: none;
+    }
+
+    .hamburger {
+        z-index: 1100;
+        position: relative;
+    }
+
+    /* Hero */
+    .hero {
+        background-attachment: scroll; /* Fixed ne radi dobro na iOS */
+    }
+
+    .hero::before {
+        display: none;
+    }
+
+    .hero-container {
+        padding: 0 20px;
+        padding-top: 80px;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content::before {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3.5rem, 15vw, 5.5rem);
+        letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-bottom: 36px;
+    }
+
+    /* About */
+    .about-section {
+        padding: 90px 0 80px;
+    }
+
+    .about-section::after {
+        display: none;
+    }
+
+    .about-intro {
+        margin-bottom: 52px;
+    }
+
+    .main-title {
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .cards-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-img-box {
+        height: 260px;
+    }
+
+    /* Kontakt */
+    .contact-section::before {
+        display: none;
+    }
+
+    .contact-wrapper {
+        padding: 80px 0;
+        gap: 44px;
+    }
+
+    .contact-info h2 {
+        font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+
+    .contact-info > p {
+        margin-bottom: 32px;
+    }
+
+    .contact-form-container {
+        padding: 32px 24px;
+    }
+
+    .info-item:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: clamp(3rem, 18vw, 4.5rem);
+    }
+
+    .btn-primary {
+        padding: 15px 32px;
+        font-size: 0.9rem;
+    }
+
+    .about-section {
+        padding: 70px 0 60px;
+    }
+
+    .contact-form-container {
+        padding: 28px 18px;
+    }
+
+    .info-item {
+        padding: 16px 18px;
+        gap: 14px;
+    }
+
+    .icon-box {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ============================================================
+   10. SCROLL ANIMACIJE (Intersection Observer via JS)
+   ============================================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================================
+   11. SELEKCIJA & SCROLLBAR
+   ============================================================ */
+::selection {
+    background: var(--red);
+    color: var(--white);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--off-white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--red);
+    border-radius: 10px;
+}
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.55);
+    padding-top: 80px;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Brand kolona */
+.footer-brand .logo {
+    color: var(--white);
+    font-size: 1.4rem;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    max-width: 280px;
+    font-weight: 300;
+}
+
+/* Label naslovi */
+.footer-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+}
+
+/* Linkovi */
+.footer-links ul,
+.footer-contact ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    padding-left: 6px;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.5);
+}
+
+.footer-contact i {
+    color: var(--red);
+    font-size: 0.85rem;
+    width: 16px;
+}
+
+/* Bottom bar */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-bottom: 48px;
+    }
+
+    .footer {
+        padding-top: 60px;
+    }
+}
